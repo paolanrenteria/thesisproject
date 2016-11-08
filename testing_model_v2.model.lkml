@@ -2,10 +2,18 @@ connection: "digital_nest"
 include: "*.view.lkml"
 include: "*.dashboard.lkml"
 
-explore:  household {}
+explore:  household {
+  hidden: yes
+}
 
-explore:  sign_in {}
+explore:  sign_in {
+  hidden: yes
+}
 
-explore:  application {}
+explore:  application {
+  hidden: yes
+}
 
-explore: attendance {}
+explore: attendance {
+  hidden: yes
+}

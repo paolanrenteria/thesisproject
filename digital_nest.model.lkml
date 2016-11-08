@@ -21,10 +21,14 @@ explore:  users {
   }
 }
 
-explore:  household {}
+explore:  household {
+}
 
-explore:  sign_in {}
+explore:  sign_in {
+}
 
-explore:  application {}
+explore:  application {
+}
 
-explore: attendance {}
+explore: attendance {
+}

@@ -7,6 +7,7 @@ explore: wp_ivlu_rg_lead_detail {
 }
 
 explore:  users {
+  hidden: yes
   join:  household {
     sql_on:  ${users.username} = ${household.username} ;;
     relationship: one_to_one
@@ -21,10 +22,18 @@ explore:  users {
   }
 }
 
-explore:  household {}
+explore:  household {
+  hidden: yes
+}
 
-explore:  sign_in {}
+explore:  sign_in {
+  hidden: yes
+}
 
-explore:  application {}
+explore:  application {
+  hidden: yes
+}
 
-explore: attendance {}
+explore: attendance {
+  hidden: yes
+}

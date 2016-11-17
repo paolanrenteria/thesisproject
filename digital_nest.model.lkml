@@ -1,6 +1,6 @@
 connection: "digital_nest"
 include: "*.view.lkml"
-include: "*.dashboard.lkml"
+include: "*.dashboard"
 
 explore: wp_ivlu_rg_lead_detail {
   hidden: yes

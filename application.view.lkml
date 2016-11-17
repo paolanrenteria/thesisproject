@@ -24,11 +24,16 @@ view:  application {
 
   dimension_group: created {
     type: time
-    timeframes: [date, month, week, year]
+    timeframes: [date, month, week, year, day_of_week, day_of_week_index]
     sql: CASE WHEN LENGTH(${TABLE}.timestamp) !=0 THEN str_to_date(${TABLE}.timestamp, '%m/%d/%Y')
     END;;
-
   }
+
+  dimension: yesnotest {
+    type: yesno
+    sql: ${created_day_of_week_index} <= WEEKDAY(NOW()) AND ${created_day_of_week_index} >= 0 ;;
+  }
+
   measure:  count {
     type:  count
     drill_fields: [full_name, age, school_name]
@@ -67,6 +72,19 @@ view:  application {
   dimension:  age {
     type: number
     sql: ${TABLE}.age01 ;;
+  }
+
+  dimension: is_18 {
+    type: yesno
+    sql: ${age} = 18 ;;
+  }
+
+  measure: sum_18 {
+    type: count
+    filters: {
+      field: is_18
+      value: "yes"
+    }
   }
 
   dimension: gender01 {
@@ -211,10 +229,15 @@ view:  application {
     sql_longitude: ${school_longtitude} ;;
   }
 
+#   dimension: icon {
+#   sql: CASE WHEN ${school_name}='Digital Nest' THEN ${school_name} END ;;
+#   html: <a href="http://digitalnest.org/" target="_blank"><img src="https://pbs.twimg.com/profile_images/479825350218620928/Zul2HpV__400x400.jpeg"  width="75" height="75" /></a> ;;
+# }
+
   dimension: icon {
-  sql: CASE WHEN ${school_name}='Digital Nest' THEN ${school_name} END ;;
-  html: <a href="http://digitalnest.org/" target="_blank"><img src="https://pbs.twimg.com/profile_images/479825350218620928/Zul2HpV__400x400.jpeg"  width="75" height="75" /></a> ;;
-}
+    sql: 1 ;;
+    html: <img src="https://pbs.twimg.com/profile_images/479825350218620928/Zul2HpV__400x400.jpeg"  width="75" height="75" /> ;;
+  }
 }
 
 

@@ -3,13 +3,12 @@ view: attendance {
     sql: SELECT * FROM attendance;;
   }
 
-  dimension: class_name {
+  dimension: fullclassname {
     sql: ${TABLE}.`Class Name` ;;
   }
 
   dimension: full_name_primary {
     sql: ${TABLE}.`Full Name` ;;
-    primary_key: yes
   }
 
   dimension: last_name {
@@ -61,5 +60,19 @@ view: attendance {
   measure: count {
     type: count
     drill_fields: [full_name_primary, present_first_date, present_last_date]
+  }
+
+  dimension: person_id {
+    primary_key: yes
+    sql: ${TABLE}.`Person ID` ;;
+  }
+
+  dimension: classname {
+    sql: ${TABLE}.`Class Name01` ;;
+  }
+
+  dimension: class_name {
+    sql: CASE WHEN ${classname} LIKE 'Workshop Wed%' THEN 'Workshop Wednesday'
+    ELSE ${classname} END;;
   }
 }

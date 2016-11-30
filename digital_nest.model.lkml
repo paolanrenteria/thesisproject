@@ -31,4 +31,39 @@ explore:  application {
 }
 
 explore: attendance {
+  join: member_information {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${attendance.person_id} = ${member_information.person_id} ;;
+  }
+}
+
+explore: member_information {}
+
+explore: attenmarch {
+  label: "Attendance Per Day"
+  join: attenmay {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${attenmarch.person_id} = ${attenmay.may_person_id} ;;
+    }
+  join: attenjuly {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${attenmarch.person_id} = ${attenjuly.july_person_id} ;;
+  }
+  join: attensept {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${attenmarch.person_id} = ${attensept.sept_person_id} ;;
+  }
+  join: attennov {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${attenmarch.person_id} = ${attennov.nov_person_id} ;;
+ }
+}
+
+explore: description {
+  from: whitespace
 }

@@ -1,7 +1,7 @@
 view: sign_in{
   derived_table: {
     sql:
-    SELECT max(timestamp) AS timestamp,
+    SELECT max(CAST(timestamp as CHAR(50))) AS timestamp,
       CONCAT(`First name`, `First name_1`, `First Name_2`) AS f_name,
       CONCAT(`Last name`,`Last name_1`,`Last Name_2`) AS l_name,
       `Are you a NEW or EXISTING member?` AS existing_member,

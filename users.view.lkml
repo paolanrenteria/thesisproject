@@ -2,7 +2,7 @@ view: users {
   derived_table:  {
     sql: SELECT
         DISTINCT lead_id,
-        MAX(CASE WHEN field_number = 1 THEN value END) as username,
+        MAX(CASE WHEN field_number = 1 THEN CAST(value as CHAR(50)) END) as username,
         MAX(CASE WHEN field_number LIKE '6.3' THEN value END) as name,
         MAX(CASE WHEN field_number LIKE '6.6' THEN value END) as last_name,
         MAX(CASE WHEN field_number = 176 THEN value END) as user_gender,

@@ -2,7 +2,7 @@ view:  activities {
   derived_table: {
     sql:
       SELECT
-        MAX(CASE WHEN field_number = 1 THEN value END) as username,
+        MAX(CASE WHEN field_number = 1 THEN CAST(value AS CHAR(50)) END) as username,
         MAX(CASE WHEN field_number LIKE '28.1' THEN value END) as after_school_programs,
         MAX(CASE WHEN field_number LIKE '28.11' THEN value END) as folklorico,
         MAX(CASE WHEN field_number LIKE '28.12' THEN value END) as drama,
@@ -34,7 +34,7 @@ view:  activities {
       GROUP BY lead_id
     ;;
     sql_trigger_value: SELECT 1 ;;
-    indexes: ["primary_key"]
+    indexes: ["username"]
   }
 
   dimension: username {

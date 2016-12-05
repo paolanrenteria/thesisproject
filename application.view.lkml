@@ -1,7 +1,7 @@
 view:  application {
   derived_table: {
     sql:
-      SELECT timestamp,
+      SELECT CAST(timestamp AS CHAR(50)),
              `Are you a new or existing member` as member,
              CONCAT(`First Name`, `First Name1`) as f_name,
              CONCAT(`Last Name`, `Last Name1`) as l_name,

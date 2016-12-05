@@ -2,7 +2,7 @@ view: education {
   derived_table: {
     sql:
     SELECT
-      MAX(CASE WHEN field_number = 1 THEN value END) as username,
+      MAX(CASE WHEN field_number = 1 THEN CAST(value AS CHAR(50)) END) as username,
       MAX(CASE WHEN field_number = 4 THEN value END) as education_level,
       MAX(CASE WHEN field_number = 27 THEN value END) as mid_school_grade,
       MAX(CASE WHEN field_number = 8 THEN value END) as high_school,

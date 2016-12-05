@@ -2,7 +2,7 @@ view: household {
   derived_table:  {
     sql:
       SELECT
-        MAX(CASE WHEN field_number = 1 THEN value END) as username,
+        MAX(CASE WHEN field_number = 1 THEN CAST(value AS CHAR(50)) END) as username,
         MAX(CASE WHEN field_number = 32 THEN value END) as father_guardian_college,
         MAX(CASE WHEN field_number = 33 THEN value END) as mother_guardian_college,
         MAX(CASE WHEN field_number = 34 THEN value END) as sibling_college,

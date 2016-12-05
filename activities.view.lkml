@@ -26,7 +26,9 @@ view:  activities {
         MAX(CASE WHEN field_number LIKE '62.6' THEN value END) as conflict_resolution,
         MAX(CASE WHEN field_number LIKE '62.7' THEN value END) as active_listening,
         MAX(CASE WHEN field_number LIKE '62.8' THEN value END) as time_management,
-        MAX(CASE WHEN field_number LIKE '62.9' THEN value END) as positive_attitude
+        MAX(CASE WHEN field_number LIKE '62.9' THEN value END) as positive_attitude,
+        MAX(CASE WHEN field_number LIKE '6.3' THEN value END) as name,
+        MAX(CASE WHEN field_number LIKE '6.6' THEN value END) as last_name
       FROM wp_ivlu_rg_lead_detail
       WHERE lead_id NOT IN (411, 421, 412, 413, 415, 416, 422, 423, 424, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 458, 459, 460)
       GROUP BY lead_id
@@ -37,8 +39,38 @@ view:  activities {
     sql:  ${TABLE}.username ;;
   }
 
+  dimension: primary_key {
+    sql: CONCAT(${username}, "-", ${student_name}) ;;
+    primary_key: yes
+  }
+
+  dimension: first_name {
+    sql: ${TABLE}.name ;;
+  }
+
+  dimension: last_name {
+    sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: student_name {
+    sql: CONCAT(${first_name}, " ", ${last_name}) ;;
+  }
+
   dimension:  after_school_programs {
     sql:  ${TABLE}.after_school_programs ;;
+  }
+
+  dimension: participates_in_after_school_programs {
+    type: yesno
+    sql: ${after_school_programs} IS NOT NULL  ;;
+  }
+
+  dimension: involved_in_sports {
+    type: yesno
+    sql: ${baseball} IS NOT NULL OR ${basketball} IS NOT NULL
+        OR ${flag_football} IS NOT NULL OR ${karate} IS NOT NULL
+        OR ${soccer} IS NOT NULL OR ${swimming} IS NOT NULL
+        OR ${softball} IS NOT NULL;;
   }
 
   dimension: folklorico {

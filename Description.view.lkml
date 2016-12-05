@@ -1,11 +1,12 @@
 view: whitespace {
 
   derived_table: {
-    sql: SELECT ' Denver' as Hometown, 'M' as gender, 'Atlanta' as Hometown1, 3 as user_id ;;
+    sql: SELECT '      Denver' as Hometown, 'M' as gender, 'Atlanta' as Hometown1, 3 as user_id ;;
   }
 
   dimension: hometown {
-    sql: TRIM(${TABLE}.Hometown) ;;
+    sql: ${TABLE}.Hometown ;;
+    html: <div style="white-space:pre;"> {{value}} </div> ;;
   }
 
     dimension: gender {

@@ -6,9 +6,9 @@ explore: wp_ivlu_rg_lead_detail {
   hidden: yes
 }
 
-explore:  users {
+explore: users {
   join:  household {
-    sql_on:  ${users.username} = ${household.username} ;;
+    sql_on: ${users.username} = ${household.username} ;;
     relationship: one_to_one
   }
   join: activities {
@@ -24,23 +24,42 @@ explore:  users {
 explore:  household {
 }
 
+explore: atten_activities {
+  label: "Attendance and Information"
+  view_label: "Attendance"
+  from: atten_per_day
+  join: users {
+    type: left_outer
+    sql_on: TRIM(LOWER(${atten_activities.student_name_2})) = TRIM(LOWER(${users.full_name})) ;;
+    relationship: many_to_one
+  }
+  join: activities {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: TRIM(LOWER(${atten_activities.student_name_2})) = TRIM(LOWER(${activities.student_name})) ;;
+  }
+  join: household {
+    sql_on: ${users.username} = ${household.username};;
+    relationship: one_to_one
+  }
+  join: education {
+    sql_on: ${users.username} = ${education.username} ;;
+    relationship: one_to_one
+  }
+}
+
 explore:  sign_in {
 }
 
 explore:  application {
 }
 
-explore: attendance {
-  join: member_information {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${attendance.person_id} = ${member_information.person_id} ;;
-  }
-}
+explore: attendance {}
 
 explore: member_information {}
 
 explore: attenmarch {
+  hidden: yes
   label: "Attendance Per Day"
   join: attenmay {
     type: left_outer
@@ -65,5 +84,16 @@ explore: attenmarch {
 }
 
 explore: description {
+  hidden: yes
   from: whitespace
+}
+
+explore: atten_per_day {
+  label: "Attendance Per Day - Since Jan"
+  view_label: "Attendance"
+  join: member_information {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${atten_per_day.person_id} = ${member_information.person_id} ;;
+  }
 }

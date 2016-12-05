@@ -11,6 +11,14 @@ view: member_information {
     sql: ${TABLE}.Black ;;
   }
 
+  dimension: ethnicity {
+    sql: CASE WHEN ${latino} IS NOT NULL THEN 'Latino'
+              WHEN ${asian} IS NOT NULL THEN 'Asian'
+              WHEN ${black} IS NOT NULL THEN 'Black'
+              WHEN ${native} IS NOT NULL THEN 'Native American'
+              WHEN ${white} IS NOT NULL THEN 'White' END;;
+  }
+
   dimension_group: dob {
     type: time
     sql: str_to_date(${TABLE}.DOB,'%m/%d/%Y') ;;
@@ -99,15 +107,6 @@ view: member_information {
   dimension: white {
     type: string
     sql: ${TABLE}.White ;;
-  }
-
-  filter: gender_filter {
-    type: string
-    suggest_dimension: test
-  }
-
-  dimension: test {
-    sql: (select Gender from digitalnest.member_information where Gender = 'Female' group by 1) ;;
   }
 
   measure: count {

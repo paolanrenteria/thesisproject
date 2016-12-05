@@ -35,7 +35,8 @@ view: users {
   }
 
   dimension: full_name {
-    sql:  CONCAT(${name}, ' ', ${last_name}) ;;
+    type: string
+    sql: CONCAT(${name}, ' ', ${last_name}) ;;
   }
 
   dimension: orig_gender {

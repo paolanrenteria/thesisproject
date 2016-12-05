@@ -14,6 +14,8 @@ view: users {
       WHERE lead_id NOT IN (411, 421, 412, 413, 415, 416, 422, 423, 424, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 458, 459, 460)
       GROUP BY lead_id
        ;;
+      sql_trigger_value: SELECT 1 ;;
+      indexes: ["username"]
   }
 
   dimension: username {

@@ -15,6 +15,8 @@ view: sign_in{
       `Please select your contributing member type below:` AS member_type
       FROM sign_in
     GROUP BY timestamp;;
+    sql_trigger_value: SELECT 1 ;;
+    indexes: ["timestamp"]
   }
 
   dimension: timestamp {

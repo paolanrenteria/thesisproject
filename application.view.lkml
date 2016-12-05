@@ -15,6 +15,8 @@ view:  application {
              CONCAT(`Type of Institute`,`Type of Institute NOW`) as institute,
              CONCAT(`Name of School`, `Name of School1`) as school_name
       FROM application;;
+      sql_trigger_value: SELECT 1 ;;
+      indexes: ["timestamp"]
   }
 
   dimension:  timestamp {

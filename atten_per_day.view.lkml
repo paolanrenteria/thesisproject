@@ -11,6 +11,11 @@ view: atten_per_day {
     sql: ${TABLE}.`Class Description` ;;
   }
 
+  dimension: class_name {
+    type: string
+    sql: SUBSTRING_INDEX(${class_description}, '-', -1) ;;
+  }
+
   dimension_group: date_of_birth {
     type: time
     sql: str_to_date(${TABLE}.`Date Of Birth`,'%m/%d/%Y') ;;
@@ -20,7 +25,7 @@ view: atten_per_day {
   dimension_group: sign_in {
     type: time
     sql: str_to_date(${TABLE}.Day,'%m/%d/%Y') ;;
-    timeframes: [date, week, month, year]
+    timeframes: [date, week, month, year, day_of_week]
   }
 
   dimension: duration_for_day {

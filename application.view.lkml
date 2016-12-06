@@ -237,8 +237,8 @@ view:  application {
 # }
 
   dimension: icon {
-    sql: 1 ;;
-    html: <img src="https://pbs.twimg.com/profile_images/479825350218620928/Zul2HpV__400x400.jpeg"  width="75" height="75" /> ;;
+    sql: CASE WHEN ${school_name} = 'Digital Nest' THEN ${school_name} END;;
+    html: <img src="http://digitalnest.org/wp-content/uploads/digital_nest-logo.png" width="309" height="125" /> ;;
   }
 }
 

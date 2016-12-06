@@ -67,7 +67,7 @@ view: atten_per_day {
     label: "Full Name"
     type: string
     sql: TRIM(CONCAT(SUBSTRING_INDEX(${TABLE}.`Student Name`, ',', -1), ' ', SUBSTRING_INDEX(${TABLE}.`Student Name`, ',', 1)));;
-    html: <a href="https://localhost:9999/dashboards/2?Full%20Name=%25{{value}}%25&filter_config=%7B%22Full%20Name%22:%5B%7B%22type%22:%22contains%22,%22values%22:%5B%7B%22constant%22:%22{{value}}%22%7D,%7B%7D%5D,%22id%22:6%7D%5D%7D" target='_blank'>{{value}}</a> ;;
+    html: <a href="https://self-signed.looker.com:9999/dashboards/2?Full%20Name=%25{{value}}%25" target='_blank'>{{value}}</a> ;;
   }
 
   measure: count {

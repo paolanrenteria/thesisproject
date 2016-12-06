@@ -37,6 +37,7 @@ explore: users {
 }
 
 explore:  household {
+  hidden: yes
 }
 
 explore: atten_activities {

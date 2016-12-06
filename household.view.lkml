@@ -30,6 +30,16 @@ view: household {
     primary_key: yes
   }
 
+  dimension: household {
+    sql: 1 ;;
+    html: <p><div style="white-space:pre-wrap;">
+    <b>People in Household</b>: {{people_in_household._value}}
+    <b>Income</b>: {{income._value}}
+    <b>First Generation</b>: {{first_generation._value}}
+    <b>Contribution</b>: {{household_contribution._value}}
+    </div></p> ;;
+  }
+
   dimension: male_guardian_college {
     sql: ${TABLE}.father_guardian_college ;;
   }

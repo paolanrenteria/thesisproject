@@ -22,6 +22,8 @@ view: career_interests {
           WHERE lead_id NOT IN (411, 421, 412, 413, 415, 416, 422, 423, 424, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 458, 459, 460)
           GROUP BY lead_id
        ;;
+      sql_trigger_value: SELECT 1 ;;
+      indexes: ["username"]
   }
 
   measure: count {
@@ -113,6 +115,19 @@ view: career_interests {
   dimension: health_science_tech {
     type: string
     sql: ${TABLE}.health_science_tech ;;
+  }
+
+  dimension: career_interests_list {
+    sql: CONCAT_WS(', ', ${agriculture_natural}, ${health_science_tech}, ${finance_business}, ${fashion_design},
+         ${engineering_design}, ${energy_utilities}, ${education_family_child}, ${building_construction}, ${arts_media},
+         ${transportation}, ${public_services}, ${marketing_sales}, ${manufacturing_product}, ${information_tech}, ${hospitality_tourism});;
+  }
+
+  dimension: career_interests {
+    sql: 1 ;;
+    html: <p><div style="white-space:pre-wrap;">
+    <b>Career Interests</b>: {{career_interests_list._value}}
+    </div></p> ;;
   }
 
   measure: agriculture {

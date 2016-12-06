@@ -81,6 +81,11 @@ view: users {
     sql: ${TABLE}.date_of_birth ;;
   }
 
+  dimension: age {
+    type: number
+    sql: FLOOR(DATEDIFF(now(),${birth_date})/365) ;;
+  }
+
   dimension: email {
     sql: ${TABLE}.email ;;
   }

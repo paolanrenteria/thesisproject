@@ -1,7 +1,7 @@
 view: users {
   derived_table:  {
     sql: SELECT
-        DISTINCT lead_id,
+        DISTINCT lead_id as lead_id,
         MAX(CASE WHEN field_number = 1 THEN CAST(value as CHAR(50)) END) as username,
         MAX(CASE WHEN field_number LIKE '6.3' THEN value END) as name,
         MAX(CASE WHEN field_number LIKE '6.6' THEN value END) as last_name,
@@ -16,6 +16,11 @@ view: users {
        ;;
       sql_trigger_value: SELECT 1 ;;
       indexes: ["username"]
+  }
+
+  dimension: lead_id {
+    type: number
+    sql: ${TABLE}.lead_id ;;
   }
 
   dimension: username {

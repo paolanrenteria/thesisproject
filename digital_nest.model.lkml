@@ -6,6 +6,17 @@ explore: wp_ivlu_rg_lead_detail {
   hidden: yes
 }
 
+explore: users_v2 {
+  from: users
+  view_name: users
+  hidden: yes
+  join: wp_ivlu_rg_lead_detail {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${users.lead_id} = ${wp_ivlu_rg_lead_detail.lead_id} ;;
+  }
+}
+
 explore: users {
   join:  household {
     sql_on: ${users.username} = ${household.username} ;;
@@ -17,6 +28,10 @@ explore: users {
   }
   join: education {
     sql_on: ${users.username} = ${education.username} ;;
+    relationship: one_to_one
+  }
+  join: career_interests {
+    sql_on: ${career_interests.lead_id} = ${users.lead_id} ;;
     relationship: one_to_one
   }
 }
@@ -44,6 +59,10 @@ explore: atten_activities {
   }
   join: education {
     sql_on: ${users.username} = ${education.username} ;;
+    relationship: one_to_one
+  }
+  join: career_interests {
+    sql_on: ${career_interests.lead_id} = ${users.lead_id};;
     relationship: one_to_one
   }
 }

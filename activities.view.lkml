@@ -28,7 +28,11 @@ view:  activities {
         MAX(CASE WHEN field_number LIKE '62.8' THEN value END) as time_management,
         MAX(CASE WHEN field_number LIKE '62.9' THEN value END) as positive_attitude,
         MAX(CASE WHEN field_number LIKE '6.3' THEN value END) as name,
-        MAX(CASE WHEN field_number LIKE '6.6' THEN value END) as last_name
+        MAX(CASE WHEN field_number LIKE '6.6' THEN value END) as last_name,
+        MAX(CASE WHEN field_number LIKE '64%' THEN value END) as technical_skills,
+        MAX(CASE WHEN field_number = 173 THEN value END) as other_technical_skills,
+        MAX(CASE WHEN field_number = 24 THEN value END) as extracurricular_activities
+
       FROM wp_ivlu_rg_lead_detail
       WHERE lead_id NOT IN (411, 421, 412, 413, 415, 416, 422, 423, 424, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 458, 459, 460)
       GROUP BY lead_id
@@ -73,6 +77,20 @@ view:  activities {
         OR ${flag_football} IS NOT NULL OR ${karate} IS NOT NULL
         OR ${soccer} IS NOT NULL OR ${swimming} IS NOT NULL
         OR ${softball} IS NOT NULL;;
+  }
+
+  dimension: sports_list {
+    sql: CONCAT_WS(', ', ${basketball}, ${baseball}, ${softball}, ${swimming}, ${soccer}, ${flag_football}, ${karate}) ;;
+  }
+
+  dimension: interests {
+    sql: 1 ;;
+    html: <p><div style="white-space:pre-wrap;">
+             <b>Technical Skills</b>: {{technical_skills._value}}
+             <b>Soft Skills</b>: {{soft_skills._value}}
+             <b>Sports</b>: {{sports_list._value}}
+             <b>Extracurricular Activities</b>: {{extracurricular_activities._value}}
+          </div></p> ;;
   }
 
   dimension: folklorico {
@@ -165,5 +183,26 @@ view:  activities {
 
   dimension: positive_attitude {
     sql: ${TABLE}.positive_attitude ;;
+  }
+
+  dimension: soft_skills {
+    type: string
+    sql: CONCAT_WS(', ', ${teamwork_collab}, ${self_confidence}, ${communication}, ${adaptability},
+        ${critical_observ}, ${conflict_resolution}, ${active_listening}, ${time_management}, ${positive_attitude}) ;;
+  }
+  dimension: technical_skills_1 {
+    sql: ${TABLE}.technical_skills ;;
+  }
+
+  dimension: other_technical_skills {
+    sql: ${TABLE}.other_technical_skills ;;
+  }
+
+  dimension: technical_skills {
+    sql: CONCAT_WS(', ', ${technical_skills_1}, ${other_technical_skills}) ;;
+  }
+
+  dimension: extracurricular_activities {
+    sql: ${TABLE}.extracurricular_activities ;;
   }
 }

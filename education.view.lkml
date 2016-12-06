@@ -25,7 +25,11 @@ view: education {
       MAX(CASE WHEN field_number = 25 THEN value END) as awards_honors,
       MAX(CASE WHEN field_number = 40 THEN value END) as college_currently_attending,
       MAX(CASE WHEN field_number = 57 THEN value END) as ever_employed,
-      MAX(CASE WHEN field_number = 58 THEN value END) as currently_employed
+      MAX(CASE WHEN field_number = 58 THEN value END) as currently_employed,
+      MAX(CASE WHEN field_number = 81 THEN value END) as learning_difficulties,
+      MAX(CASE WHEN field_number = 82 THEN value END) as detailed_difficulties
+
+
     FROM wp_ivlu_rg_lead_detail
     WHERE lead_id NOT IN (411, 421, 412, 413, 415, 416, 422, 423, 424, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 458, 459, 460)
     GROUP BY lead_id
@@ -39,8 +43,26 @@ view: education {
     primary_key: yes
   }
 
+  dimension: education {
+    sql: 1;;
+    html: <p><div style="white-space:pre-wrap;">
+         <b>Colleges Interested In</b>: {{college_to_attend._value}}
+         <b>Majors Interested In</b>: {{study_in_college._value}}
+         <b>Difficulties Learning</b>: {{difficulties_learning._value}}
+         <b>Detailed Difficulties</b>: {{detailed_difficulties._value}}
+    </div></p> ;;
+  }
+
   dimension:  education_level {
     sql:  ${TABLE}.education_level ;;
+  }
+
+  dimension: difficulties_learning {
+    sql: ${TABLE}.learning_difficulties ;;
+  }
+
+  dimension: detailed_difficulties {
+    sql: ${TABLE}.detailed_difficulties ;;
   }
 
   dimension: mid_school_grade {

@@ -34,6 +34,10 @@ view: household {
     sql: ${TABLE}.father_guardian_college ;;
   }
 
+  dimension: people_in_household {
+    sql: ${TABLE}.people_in_household ;;
+  }
+
   dimension: female_guardian_college {
     sql: ${TABLE}.mother_guardian_college ;;
   }

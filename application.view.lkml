@@ -91,7 +91,6 @@ view:  application {
 
   dimension: gender01 {
     sql: ${TABLE}.gender01;;
-    hidden: yes
   }
 
   dimension: gender {
@@ -125,7 +124,6 @@ view:  application {
 
   dimension: languages {
     sql: ${TABLE}.languages ;;
-    hidden: yes
   }
 
   dimension: languages_spoken {
@@ -136,6 +134,13 @@ view:  application {
            WHEN ${languages} = 'spanish german english' THEN 'Spanish, English, German'
       ELSE ${languages} END
            ;;
+  }
+
+  dimension: languages_spoken_v2 {
+  sql: 1 ;;
+    html: <p><div style="white-space:pre-wrap;">
+    <b>Languages spoken</b>: {{languages_spoken._value}}
+    </div></p> ;;
   }
 
   dimension: institute {

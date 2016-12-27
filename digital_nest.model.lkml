@@ -15,6 +15,7 @@ explore: users_v2 {
     relationship: one_to_one
     sql_on: ${users.lead_id} = ${wp_ivlu_rg_lead_detail.lead_id} ;;
   }
+  join: education {}
 }
 
 explore: users {

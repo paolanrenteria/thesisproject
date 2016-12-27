@@ -98,4 +98,7 @@ view: users {
     sql: ${TABLE}.current_education ;;
   }
 
+#   dimension: error {
+#     sql: ${wp_ivlu_rg_lead_detail.lead_id} ;;
+#   }
 }

@@ -54,6 +54,7 @@ view: education {
   }
 
   dimension:  education_level {
+    label: "Level"
     sql:  ${TABLE}.education_level ;;
   }
 

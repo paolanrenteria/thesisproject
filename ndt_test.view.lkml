@@ -2,9 +2,9 @@ include: "test.model.lkml"
 
 view: ndt_test {
   derived_table: {
-    sql_trigger_value: SELECT NOW() ;;
+    sql_trigger_value: SELECT NOW()  ;;
     explore_source: users {column: age {}
-      column: gender {}
+      column: gender { field: users.gender}
       column: count {}
       filters: {
         field: users.age

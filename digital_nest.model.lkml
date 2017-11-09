@@ -6,6 +6,10 @@ explore: wp_ivlu_rg_lead_detail {
   hidden: yes
 }
 
+
+
+
+
 explore: users_v2 {
   from: users
   view_name: users
@@ -18,7 +22,8 @@ explore: users_v2 {
   join: education {}
 }
 
-explore: users {
+explore: users_v3 {
+  view_name: users
   join:  household {
     sql_on: ${users.username} = ${household.username} ;;
     relationship: one_to_one

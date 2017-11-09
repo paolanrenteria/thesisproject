@@ -4,8 +4,16 @@ include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: users {
-  join: ndt_test {
-    sql_on: ${users.age} = ${ndt_test.age} ;;
+  label: "USERS"
+  view_label: "USERS"
+  join: ndt_test_thing {
+    from: ndt_test
+    sql_on: ${users.age} = ${ndt_test_thing.age} ;;
+    relationship: one_to_one
+  }
+  join: ndt_test_thing_two {
+    from: ndt_test_2
+    sql_on: ${ndt_test_thing_two.age} = ${users.age} ;;
     relationship: one_to_one
   }
 }

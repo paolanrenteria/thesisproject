@@ -3,8 +3,7 @@ include: "test.model.lkml"
 view: ndt_test {
   derived_table: {
     sql_trigger_value: SELECT NOW() ;;
-    explore_source: users {
-      column: age {}
+    explore_source: users {column: age {}
       column: gender {}
       column: count {}
       filters: {

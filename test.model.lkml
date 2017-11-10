@@ -14,7 +14,7 @@ explore: users {
   }
   join: ndt_test_thing_two {
     from: ndt_test_2
-#     fields: [ndt_test_thing_two.count, ndt_test_thing_two.age]
+    fields: [ndt_test_thing_two.count, ndt_test_thing_two.age]
     sql_on: ${ndt_test_thing_two.age} = ${users.age} ;;
     relationship: one_to_one
   }

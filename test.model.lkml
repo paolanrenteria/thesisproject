@@ -8,7 +8,7 @@ explore: users {
   view_label: "USERS"
   join: ndt_test_thing {
     from: ndt_test
-    fields: [ndt_test_thing.age, ndt_test_thing.count, ndt_test_thing.gender]
+    fields: [ndt_test_thing.age, ndt_test_thing.count]
     sql_on: ${users.age} = ${ndt_test_thing.age} ;;
     relationship: one_to_one
   }

@@ -4,6 +4,7 @@ include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: users {
+  persist_for: "0 minutes"
   label: "USERS"
   view_label: "USERS"
   join: ndt_test_thing {

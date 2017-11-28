@@ -22,7 +22,7 @@ explore: users_v2 {
   join: education {}
 }
 
-explore: users_v3 {
+explore: users {
   view_name: users
   join:  household {
     sql_on: ${users.username} = ${household.username} ;;

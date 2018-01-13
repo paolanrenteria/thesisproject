@@ -1,3 +1,5 @@
+#somecomment
+
 view:  application {
   derived_table: {
     sql:

@@ -23,6 +23,8 @@ explore: users_v2 {
 }
 
 explore: users {
+  #delete later
+  persist_for: "0 minutes"
   view_name: users
   join:  household {
     sql_on: ${users.username} = ${household.username} ;;

@@ -1,4 +1,3 @@
-#paolacomment
 view:  application {
   derived_table: {
     sql:
